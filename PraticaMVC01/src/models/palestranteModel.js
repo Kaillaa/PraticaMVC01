@@ -1,16 +1,18 @@
 import mysqlPool from "../config/mySqlConnect.js";
 
-const tabelaPalestrante = `
+const tableParticipantes = `
   CREATE TABLE IF NOT EXISTS palestrante (
-    id VARCHAR(60) PRIMARY KEY,
+    participanteId VARCHAR(255) NOT NULL PRIMARY KEY,
+    eventoId VARCHAR(255) NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    expertise VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (eventoId) REFERENCES evento(eventoId)
   )
 `;
 
-mysqlPool.query(tabelaPalestrante, (err) => {
+mysqlPool.query(tableParticipantes, (err) => {
   if (err) throw err;
-  console.log("Tabela Palestrante criada!");
+  console.log("Tabela Participante criada!");
 });
