@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { criarPalestrante, getPalestrantes, listarEventos, criarEvento  } from "../controllers/eventoController.js";
-import { registrarParticipante, inscreverParticipante } from '../controllers/participantesController.js';
+import { criarPalestrante, getPalestrantes, getEventos, criarEvento, deletarEvento, editar } from "../controllers/eventoController.js";
+import { registrarParticipante, inscreverParticipante, enviarFeedback } from '../controllers/participantesController.js';
 
 
 const router = Router();
@@ -15,13 +15,23 @@ router.get("/palestrantes", getPalestrantes);
 router.post('/criar', criarEvento);
 
 // Rota para listar todos os eventos com detalhes dos palestrantes
-router.get('/agenda', listarEventos);
+router.get('/agenda', getEventos);
 
 // Rota para registrar um novo participante
 router.post('/registrar', registrarParticipante);
 
 // Rota para inscrever um participante em um evento
 router.post('/inscrever', inscreverParticipante);
+
+//  Rota para Deletar evento 
+router.delete('/cancelar/:eventoId', deletarEvento);
+
+// Rota para feedback
+router.post('/feedback', enviarFeedback)
+
+// Rota editar
+router.put('/editar/:eventoId', editar)
+
 
 
 export { router };

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import "./models/eventosModel.js";
 import "./models/palestranteModel.js";
 import "./models/participanteModel.js";
+import "./models/feedbackModel.js";
 import { router as eventoRoutes } from "./routes/eventoRoutes.js";
 
 dotenv.config();
